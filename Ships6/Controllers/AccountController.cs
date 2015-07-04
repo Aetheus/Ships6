@@ -151,7 +151,18 @@ namespace Ships6.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    UserProfile = new UserProfile
+                    {
+                        FullName = model.FullName,
+                        DateOfBirth = model.DateOfBirth,
+                        CreditCard = model.CreditCard,
+                        Gender = model.Gender,
+                    }
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -374,7 +385,7 @@ namespace Ships6.Controllers
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
-                        await UserManager.AddToRoleAsync(user.Id, "canEdit");
+                        //await UserManager.AddToRoleAsync(user.Id, "canEdit");
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }

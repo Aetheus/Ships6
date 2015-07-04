@@ -1,21 +1,22 @@
 namespace Ships6.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Ships6.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Ships6.Models.ApplicationDbContext>
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
-        //asdf
+
+
         bool AddUserAndRole(Ships6.Models.ApplicationDbContext context)
         {
             IdentityResult ir;
@@ -27,13 +28,21 @@ namespace Ships6.Migrations
             var user = new ApplicationUser()
             {
                 UserName = "user1@contoso.com",
+                UserProfile = new UserProfile
+                {
+                    FullName = "Bob McBob",
+                    Gender = "Male",
+                    DateOfBirth = new DateTime(1993, 1, 1),
+                    CreditCard = "1234-5678-9012-3452"
+                }
             };
-            ir = um.Create(user, "P_assw0rd1");
+            ir = um.Create(user, "password1234#");
             if (ir.Succeeded == false)
                 return ir.Succeeded;
             ir = um.AddToRole(user.Id, "canEdit");
             return ir.Succeeded;
         }
+
 
         protected override void Seed(Ships6.Models.ApplicationDbContext context)
         {

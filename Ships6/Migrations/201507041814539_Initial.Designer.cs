@@ -13,7 +13,7 @@ namespace Ships6.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201507012012168_Initial"; }
+            get { return "201507041814539_Initial"; }
         }
         
         string IMigrationMetadata.Source

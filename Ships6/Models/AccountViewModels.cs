@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Ships6.Models
@@ -79,6 +80,18 @@ namespace Ships6.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Full Name")]
+        public string FullName { get; set; }
+
+        [Display(Name = "Credit Card")]
+        public string CreditCard { get; set; }
+
+        [Display(Name = "Date of Birth")]
+        public DateTime DateOfBirth { get; set; }
+
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
     }
 
     public class ResetPasswordViewModel
