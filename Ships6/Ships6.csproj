@@ -180,14 +180,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CMController.cs" />
+    <Compile Include="Controllers\DestinationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201507041814539_Initial.cs" />
-    <Compile Include="Migrations\201507041814539_Initial.Designer.cs">
-      <DependentUpon>201507041814539_Initial.cs</DependentUpon>
+    <Compile Include="HtmlHelpers\ImageHelper.cs" />
+    <Compile Include="Migrations\201507051656592_Initial.cs" />
+    <Compile Include="Migrations\201507051656592_Initial.Designer.cs">
+      <DependentUpon>201507051656592_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -274,6 +276,11 @@
     <Content Include="Views\CM\Details.cshtml" />
     <Content Include="Views\CM\Edit.cshtml" />
     <Content Include="Views\CM\Index.cshtml" />
+    <Content Include="Views\Destinations\Create.cshtml" />
+    <Content Include="Views\Destinations\Delete.cshtml" />
+    <Content Include="Views\Destinations\Details.cshtml" />
+    <Content Include="Views\Destinations\Edit.cshtml" />
+    <Content Include="Views\Destinations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -286,8 +293,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507041814539_Initial.resx">
-      <DependentUpon>201507041814539_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201507051656592_Initial.resx">
+      <DependentUpon>201507051656592_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

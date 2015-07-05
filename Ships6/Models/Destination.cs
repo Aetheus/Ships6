@@ -17,4 +17,12 @@ namespace Ships6.Models
 
         public byte[] DestinationImage { get; set; }
     }
+
+
+    /*public class DestinationCreateViewModel
+    {
+        public int DestinationName { get; set; }
+        public string DestinationCountry { get; set; }
+        public HttpPostedFile DestinationImage { get; set; }
+    }*/
 }
