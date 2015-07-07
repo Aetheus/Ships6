@@ -22,7 +22,9 @@ namespace Ships6.Migrations
             IdentityResult ir;
             var rm = new RoleManager<IdentityRole>
                 (new RoleStore<IdentityRole>(context));
+            
             ir = rm.Create(new IdentityRole("canEdit"));
+
             var um = new UserManager<ApplicationUser>(
                 new UserStore<ApplicationUser>(context));
             var user = new ApplicationUser()
@@ -59,6 +61,35 @@ namespace Ships6.Migrations
             //    );
             //
             AddUserAndRole(context);
+
+            context.Destinations.AddOrUpdate(p=> p.DestinationName,
+              new Destination
+              {
+                  DestinationName = "Cape Town",
+                  DestinationCountry="South Africa"
+              },
+              new Destination
+              {
+                  DestinationName="Penang",
+                  DestinationCountry="Malaysia"
+              },
+              new Destination
+              {
+                  DestinationName="San Fransicso",
+                  DestinationCountry="United States"
+              },
+              new Destination
+              {
+                  DestinationName="Antartica",
+                  DestinationCountry="Antartica"
+              },
+              new Destination
+              {
+                  DestinationName = "Ellesmere Port",
+                  DestinationCountry="United Kingdoms"
+              }
+            );
+
             context.Contacts.AddOrUpdate(p => p.Name,
                new Contact
                {

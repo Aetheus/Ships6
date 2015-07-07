@@ -179,17 +179,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CabinTypesController.cs" />
     <Compile Include="Controllers\CMController.cs" />
     <Compile Include="Controllers\DestinationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OperatorsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\ImageHelper.cs" />
-    <Compile Include="Migrations\201507051656592_Initial.cs" />
-    <Compile Include="Migrations\201507051656592_Initial.Designer.cs">
-      <DependentUpon>201507051656592_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201507071936398_Initial.cs" />
+    <Compile Include="Migrations\201507071936398_Initial.Designer.cs">
+      <DependentUpon>201507071936398_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -281,6 +283,16 @@
     <Content Include="Views\Destinations\Details.cshtml" />
     <Content Include="Views\Destinations\Edit.cshtml" />
     <Content Include="Views\Destinations\Index.cshtml" />
+    <Content Include="Views\CabinTypes\Create.cshtml" />
+    <Content Include="Views\CabinTypes\Delete.cshtml" />
+    <Content Include="Views\CabinTypes\Details.cshtml" />
+    <Content Include="Views\CabinTypes\Edit.cshtml" />
+    <Content Include="Views\CabinTypes\Index.cshtml" />
+    <Content Include="Views\Operators\Create.cshtml" />
+    <Content Include="Views\Operators\Delete.cshtml" />
+    <Content Include="Views\Operators\Details.cshtml" />
+    <Content Include="Views\Operators\Edit.cshtml" />
+    <Content Include="Views\Operators\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -293,8 +305,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507051656592_Initial.resx">
-      <DependentUpon>201507051656592_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201507071936398_Initial.resx">
+      <DependentUpon>201507071936398_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

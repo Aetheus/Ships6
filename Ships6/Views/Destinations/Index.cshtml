@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Ships6.Models.Destination>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Destinations Index";
 }
 
 <h2>Index</h2>
@@ -32,7 +32,9 @@
             @item.DestinationCountry 
         </td>
         <td>
-            <img src="data:image;base64,@System.Convert.ToBase64String(item.DestinationImage)" width="80" height="80" /> 
+            @if (item.DestinationImage != null){
+                <img src="data:image;base64,@System.Convert.ToBase64String(item.DestinationImage)" width="80" height="80" />
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.DestinationID }) |

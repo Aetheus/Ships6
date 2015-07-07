@@ -16,8 +16,14 @@ namespace Ships6.Models
         public int UserID { get; set; }
         public int CabinID { get; set; }
 
+        [Display (Name="Booked On")]
         [Column(TypeName="datetime2")]
         public DateTime ReservationTime { get; set; }
+
+        [Display(Name = "Booking Price")]
+        [Column(TypeName = "money")]
+        public decimal ReservationPrice { get; set; }
+
 
         [ForeignKey("CruiseID")]
         public Cruise Cruise;

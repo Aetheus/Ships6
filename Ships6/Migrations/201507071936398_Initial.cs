@@ -106,6 +106,7 @@ namespace Ships6.Migrations
                         UserID = c.Int(nullable: false),
                         CabinID = c.Int(nullable: false),
                         ReservationTime = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        ReservationPrice = c.Decimal(nullable: false, storeType: "money"),
                     })
                 .PrimaryKey(t => t.ReservationID);
             

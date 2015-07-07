@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Ships6.Models.Operator>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OperatorName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OperatorName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OperatorID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OperatorID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OperatorID })
+        </td>
+    </tr>
+}
+
+</table>

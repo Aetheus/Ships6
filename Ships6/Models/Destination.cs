@@ -12,9 +12,13 @@ namespace Ships6.Models
         [Key]
         public int DestinationID { get; set; }
 
+        [Display(Name = "Destination Name")]
         public string DestinationName { get; set; }
+
+        [Display(Name = "Country")]
         public string DestinationCountry { get; set; }
 
+        [Display(Name = "Image")]
         public byte[] DestinationImage { get; set; }
     }
 

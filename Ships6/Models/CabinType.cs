@@ -12,8 +12,11 @@ namespace Ships6.Models
         [Key]
         public int CabinTypeID { get; set; }
 
+
+        [Display(Name = "Cabin Type Name")]
         public string CabinTypeName { get; set; }
         
+        [Display (Name="Price")]
         [Column(TypeName = "money")]
         public decimal CabinTypePrice { get; set; }
     }

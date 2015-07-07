@@ -12,6 +12,7 @@ namespace Ships6.Models
         [Key]
         public int OperatorID { get; set; }
 
+        [Display (Name="Operator Name")]
         public string OperatorName { get; set; }
     }
 }

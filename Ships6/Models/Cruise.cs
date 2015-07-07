@@ -18,14 +18,21 @@ namespace Ships6.Models
         [ForeignKey("OperatorID")]
         public virtual Operator Operator { get; set; }
 
+        [Display (Name="Cruise Name")]
         public string CruiseName { get; set; }
+
+        [Display (Name="Description")]
         public string CruiseDescription { get; set; }
+
+        [Display(Name = "Image")]
         public byte[] CruiseImage { get; set; }
 
 
+        [Display(Name = "Price")]
         [Column(TypeName = "money")]
         public decimal CruisePrice { get; set; }
 
+        [Display(Name = "Departure Time")]
         [Column(TypeName = "datetime2")]
         public DateTime CruiseDepartureTime { get; set; }
         

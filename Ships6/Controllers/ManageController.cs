@@ -24,6 +24,7 @@ namespace Ships6.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+
         }
 
         public ApplicationSignInManager SignInManager
