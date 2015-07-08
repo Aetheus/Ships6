@@ -17,6 +17,8 @@ namespace Ships6.Models
         [Column(Order = 1)]
         public int DestinationID { get; set; }
 
+        [Key]
+        [Column(Order = 2)]
         public int tripOrder { get; set; }
 
         [ForeignKey("CruiseID")]

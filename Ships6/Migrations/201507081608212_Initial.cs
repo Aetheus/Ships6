@@ -80,7 +80,7 @@ namespace Ships6.Migrations
                         DestinationID = c.Int(nullable: false),
                         tripOrder = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => new { t.CruiseID, t.DestinationID })
+                .PrimaryKey(t => new { t.CruiseID, t.DestinationID, t.tripOrder })
                 .ForeignKey("dbo.Cruises", t => t.CruiseID, cascadeDelete: true)
                 .ForeignKey("dbo.Destinations", t => t.DestinationID, cascadeDelete: true)
                 .Index(t => t.CruiseID)

@@ -22,7 +22,7 @@ namespace Ships6.Migrations
             IdentityResult ir;
             var rm = new RoleManager<IdentityRole>
                 (new RoleStore<IdentityRole>(context));
-            
+
             ir = rm.Create(new IdentityRole("canEdit"));
 
             var um = new UserManager<ApplicationUser>(
@@ -45,6 +45,177 @@ namespace Ships6.Migrations
             return ir.Succeeded;
         }
 
+        void SeedOperators(ApplicationDbContext context)
+        {
+            context.Operators.AddOrUpdate(p => p.OperatorName,
+                new Operator
+                {
+                    OperatorName = "Princess Cruise"
+                },
+                new Operator
+                {
+                    OperatorName = "Cunard Line"
+                }
+            );
+        }
+
+        void SeedCabinTypes(ApplicationDbContext context)
+        {
+
+            context.CabinTypes.AddOrUpdate(p => p.CabinTypeName,
+                new CabinType
+                {
+                    CabinTypeName = "Inside Room",
+                    CabinTypePrice = 250
+                },
+                new CabinType
+                {
+                    CabinTypeName = "Ocean View Room",
+                    CabinTypePrice = 350
+                },
+                new CabinType
+                {
+                    CabinTypeName = "Balcony Room",
+                    CabinTypePrice = 550
+                },
+                new CabinType
+                {
+                    CabinTypeName = "Suite Room",
+                    CabinTypePrice = 550
+                }
+            );
+        }
+
+        void SeedDestinations(Ships6.Models.ApplicationDbContext context)
+        {
+            context.Destinations.AddOrUpdate(p => p.DestinationName,
+                new Destination
+                {
+                    DestinationName = "no destination",
+                    DestinationCountry = "nowhere"
+                },
+              new Destination
+              {
+                  DestinationName = "Cape Town",
+                  DestinationCountry = "South Africa"
+              },
+              new Destination
+              {
+                  DestinationName = "Penang",
+                  DestinationCountry = "Malaysia"
+              },
+              new Destination
+              {
+                  DestinationName = "San Fransicso",
+                  DestinationCountry = "United States"
+              },
+              new Destination
+              {
+                  DestinationName = "Antartica",
+                  DestinationCountry = "Antartica"
+              },
+              new Destination
+              {
+                  DestinationName = "Ellesmere Port",
+                  DestinationCountry = "United Kingdoms"
+              },
+              new Destination
+              {
+                  DestinationName = "Osaka",
+                  DestinationCountry = "Japan"
+              },
+              new Destination
+              {
+                  DestinationName = "Hong Kong",
+                  DestinationCountry = "China"
+              },
+              new Destination
+              {
+                  DestinationName = "Nagoya",
+                  DestinationCountry = "Japan"
+              },
+              new Destination
+              {
+                  DestinationName = "Port Royal",
+                  DestinationCountry = "Jamaica"
+              },
+              new Destination
+              {
+                  DestinationName = "Sydney",
+                  DestinationCountry = "Australia"
+              },
+              new Destination
+              {
+                  DestinationName = "Anchorage",
+                  DestinationCountry = "United States"
+              },
+              new Destination
+              {
+                  DestinationName = "Lisbon",
+                  DestinationCountry = "Spain"
+              },
+              new Destination
+              {
+                  DestinationName = "Singapore",
+                  DestinationCountry = "Singapore"
+              },
+              new Destination
+              {
+                  DestinationName = "Liverpool",
+                  DestinationCountry = "United Kingdoms"
+              },
+              new Destination
+              {
+                  DestinationName = "Pusan",
+                  DestinationCountry = "South Korea"
+              },
+              new Destination
+              {
+                  DestinationName = "Dubrovnik",
+                  DestinationCountry = "Croatia"
+              },
+              new Destination
+              {
+                  DestinationName = "Lisbon",
+                  DestinationCountry = "Portugal"
+              },
+              new Destination
+              {
+                  DestinationName = "Beijing",
+                  DestinationCountry = "China"
+              },
+              new Destination
+              {
+                  DestinationName = "Athens",
+                  DestinationCountry = "Greece"
+              },
+              new Destination
+              {
+                  DestinationName = "Stockholm",
+                  DestinationCountry = "Sweden"
+              },
+              new Destination
+              {
+                  DestinationName = "Istanbul",
+                  DestinationCountry = "Turkey"
+              },
+              new Destination
+              {
+                  DestinationName = "Quebec City",
+                  DestinationCountry = "Canada"
+              },
+              new Destination
+              {
+                  DestinationName = "St. Petersburg",
+                  DestinationCountry = "Russia"
+              },
+              new Destination
+              {
+                  DestinationName = "Venice",
+                  DestinationCountry = "Italy"
+              }
+            );
+        }
 
         protected override void Seed(Ships6.Models.ApplicationDbContext context)
         {
@@ -62,81 +233,10 @@ namespace Ships6.Migrations
             //
             AddUserAndRole(context);
 
-            context.Destinations.AddOrUpdate(p=> p.DestinationName,
-              new Destination
-              {
-                  DestinationName = "Cape Town",
-                  DestinationCountry="South Africa"
-              },
-              new Destination
-              {
-                  DestinationName="Penang",
-                  DestinationCountry="Malaysia"
-              },
-              new Destination
-              {
-                  DestinationName="San Fransicso",
-                  DestinationCountry="United States"
-              },
-              new Destination
-              {
-                  DestinationName="Antartica",
-                  DestinationCountry="Antartica"
-              },
-              new Destination
-              {
-                  DestinationName = "Ellesmere Port",
-                  DestinationCountry="United Kingdoms"
-              }
-            );
+            SeedOperators(context);
+            SeedCabinTypes(context);
+            SeedDestinations(context);
 
-            context.Contacts.AddOrUpdate(p => p.Name,
-               new Contact
-               {
-                   Name = "Debra Garcia",
-                   Address = "1234 Main St",
-                   City = "Redmond",
-                   State = "WA",
-                   Zip = "10999",
-                   Email = "debra@example.com",
-               },
-                new Contact
-                {
-                    Name = "Thorsten Weinrich",
-                    Address = "5678 1st Ave W",
-                    City = "Redmond",
-                    State = "WA",
-                    Zip = "10999",
-                    Email = "thorsten@example.com",
-                },
-                new Contact
-                {
-                    Name = "Yuhong Li",
-                    Address = "9012 State st",
-                    City = "Redmond",
-                    State = "WA",
-                    Zip = "10999",
-                    Email = "yuhong@example.com",
-                },
-                new Contact
-                {
-                    Name = "Jon Orton",
-                    Address = "3456 Maple St",
-                    City = "Redmond",
-                    State = "WA",
-                    Zip = "10999",
-                    Email = "jon@example.com",
-                },
-                new Contact
-                {
-                    Name = "Diliana Alexieva-Bosseva",
-                    Address = "7890 2nd Ave E",
-                    City = "Redmond",
-                    State = "WA",
-                    Zip = "10999",
-                    Email = "diliana@example.com",
-                }
-            );
         }
     }
 }

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Ships6.Models.Cruise>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Operator.OperatorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CruiseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CruiseDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CruiseImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CruisePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CruiseDepartureTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CruiseDayLength)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Operator.OperatorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CruiseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CruiseDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CruiseImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CruisePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CruiseDepartureTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CruiseDayLength)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CruiseID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CruiseID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CruiseID })
+        </td>
+    </tr>
+}
+
+</table>
