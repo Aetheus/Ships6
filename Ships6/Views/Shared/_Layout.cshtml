@@ -29,15 +29,14 @@
     </script>
 </head>
 <body>
-    <nav class="light-blue lighten-1" role="navigation">
+    <nav class="white" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo">Logo</a>
+            <a id="logo-container" href="#" class="brand-logo" style="color:black;">Logo</a>
             <ul class="right hide-on-med-and-down">
                 @Html.Partial("_LoginPartial")
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                
+                <li>@Html.ActionLink("Home", "Index", "Home", new { style="color:black;" })</li>
+                <li>@Html.ActionLink("About", "About", "Home", new { style = "color:black;" })</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home", new { style = "color:black;" })</li>
             </ul>
 
             <ul style="left: -250px;" id="nav-mobile" class="side-nav">
@@ -47,10 +46,13 @@
                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 
             </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" data-activates="nav-mobile" class="button-collapse light-blue-text"><i class="material-icons">menu</i></a>
         </div>
     </nav>
- 
+
+    @if (ViewBag.isParallax != null){
+    @Html.Partial("_Parallax1")
+    }
 
     <div class="container body-content">
         @RenderBody()
@@ -72,6 +74,11 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $(".button-collapse").sideNav();
+            try{
+                $('.parallax').parallax();
+            }catch(exc){
+
+            }
         });
     </script>
 </body>

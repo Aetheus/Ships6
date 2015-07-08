@@ -181,6 +181,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CabinTypesController.cs" />
     <Compile Include="Controllers\CMController.cs" />
+    <Compile Include="Controllers\CruiseCatalogueController.cs" />
     <Compile Include="Controllers\CruisesController.cs" />
     <Compile Include="Controllers\DestinationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -211,6 +212,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\NOIMAGE.jpg" />
+    <Content Include="Content\assets\sydney_ship2.jpg" />
+    <Content Include="Content\assets\sydney_ship3.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\materialize\css\materialize.css" />
@@ -326,6 +330,12 @@
     <Content Include="Views\Cruises\Details.cshtml" />
     <Content Include="Views\Cruises\Edit.cshtml" />
     <Content Include="Views\Cruises\Index.cshtml" />
+    <Content Include="Views\CruiseCatalogue\Create.cshtml" />
+    <Content Include="Views\CruiseCatalogue\Delete.cshtml" />
+    <Content Include="Views\CruiseCatalogue\Details.cshtml" />
+    <Content Include="Views\CruiseCatalogue\Edit.cshtml" />
+    <Content Include="Views\CruiseCatalogue\Index.cshtml" />
+    <Content Include="Views\Shared\_Parallax1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

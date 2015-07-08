@@ -12,6 +12,7 @@ namespace Ships6.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
+            ViewBag.isParallax = true;
             return View();
         }
 

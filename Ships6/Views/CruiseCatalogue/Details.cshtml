@@ -1,0 +1,74 @@
+﻿@model Ships6.Models.Cruise
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cruise</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Operator.OperatorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Operator.OperatorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CruiseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CruiseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CruiseDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CruiseDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CruiseImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CruiseImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CruisePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CruisePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CruiseDepartureTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CruiseDepartureTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CruiseDayLength)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CruiseDayLength)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CruiseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
