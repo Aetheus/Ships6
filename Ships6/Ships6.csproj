@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidationNA">
+      <HintPath>..\packages\FluentValidationNA.1.2.16\lib\net40\FluentValidationNA.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ApplicationInsights">
       <HintPath>..\packages\Microsoft.ApplicationInsights.1.0.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
@@ -63,6 +66,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.Library.1.1.14\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -182,6 +188,7 @@
     <Compile Include="Controllers\CabinTypesController.cs" />
     <Compile Include="Controllers\CMController.cs" />
     <Compile Include="Controllers\CruiseCatalogueController.cs" />
+    <Compile Include="Controllers\CruiseCompareController.cs" />
     <Compile Include="Controllers\CruisesController.cs" />
     <Compile Include="Controllers\DestinationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -336,6 +343,7 @@
     <Content Include="Views\CruiseCatalogue\Edit.cshtml" />
     <Content Include="Views\CruiseCatalogue\Index.cshtml" />
     <Content Include="Views\Shared\_Parallax1.cshtml" />
+    <Content Include="Views\CruiseCompare\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

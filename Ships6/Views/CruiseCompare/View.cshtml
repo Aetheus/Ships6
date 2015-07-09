@@ -1,0 +1,44 @@
+﻿
+@model IEnumerable<Ships6.Models.Cruise>
+
+
+@{
+    ViewBag.Title = "View";
+    var cruiseArray = Model.ToArray();
+    if (ViewBag.isPartialView != null && (bool)ViewBag.isPartialView)
+    {
+        Layout = null;            
+    }    
+}
+
+<h2>View</h2>
+
+<table>
+    <tr>
+        <td>Image</td>
+        @for (int i = 0; i < cruiseArray.Length; i++)
+        {
+            if (cruiseArray[i].CruiseImage != null)
+            {
+        <td>
+            <img src="data:image;base64,@System.Convert.ToBase64String(cruiseArray[i].CruiseImage)" height="200"/>
+        </td>
+            }
+            else
+            {
+        <td>
+            <img src="~/Content/assets/NOIMAGE.jpg" height="200" />
+        </td>
+            }
+        }
+    </tr>
+
+    <tr>
+        <td>Name</td>
+        @for (int i = 0; i < cruiseArray.Length; i++){
+        <td>
+            @cruiseArray[i].CruiseName
+        </td>
+        }
+    </tr>
+</table>
