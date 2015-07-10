@@ -31,20 +31,19 @@
 <body>
     <nav class="white" role="navigation">
         <div class="nav-wrapper container">
-            <a id="logo-container" href="#" class="brand-logo" style="color:black;">Logo</a>
+            <a id="logo-container" href="/" class="brand-logo" style="color:black;">Carnival Corp.</a>
             <ul class="right hide-on-med-and-down">
                 @Html.Partial("_LoginPartial")
-                <li>@Html.ActionLink("Home", "Index", "Home", new { style="color:black;" })</li>
-                <li>@Html.ActionLink("About", "About", "Home", new { style = "color:black;" })</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home", new { style = "color:black;" })</li>
+                <li>@Html.ActionLink("Catalogue", "Index", "CruiseCatalogue",null, new { @class = "black-text" })</li>
+                <li>@Html.ActionLink("Home", "Index", "Home",null, new { @class = "black-text" })</li>
+                <li>@Html.ActionLink("About", "About", "Home",null, new { @class = "black-text" })</li>
             </ul>
 
             <ul style="left: -250px;" id="nav-mobile" class="side-nav">
                 @Html.Partial("_LoginPartial")
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                
+                <li>@Html.ActionLink("Catalogue", "Index", "CruiseCatalogue", null, new { @class = "black-text" })</li>
+                <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "black-text" })</li>
+                <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "black-text" })</li>
             </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse light-blue-text"><i class="material-icons">menu</i></a>
         </div>
