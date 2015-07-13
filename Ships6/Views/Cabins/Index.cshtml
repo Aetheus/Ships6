@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.CabinID)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CabinType.CabinTypeName)
         </th>
         <th>
@@ -25,6 +28,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+           @Html.DisplayFor(modelItem => item.CabinID)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.CabinType.CabinTypeName)
         </td>

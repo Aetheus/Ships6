@@ -53,6 +53,7 @@ namespace Ships6.Controllers
         {
             if (ModelState.IsValid)
             {
+                cabin.CabinIsOccupied = false;
                 db.Cabins.Add(cabin);
                 db.SaveChanges();
                 return RedirectToAction("Index");

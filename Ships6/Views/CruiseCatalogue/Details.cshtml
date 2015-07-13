@@ -4,11 +4,24 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
 <div>
-    <h4>Cruise</h4>
+    <h2>@Html.DisplayFor(model => model.CruiseName)</h2>
     <hr />
+
+    <div id="imageWrapper" class="center-block" style="width:100%;max-height:40%;">
+        @if (Model.CruiseImage != null)
+        {
+            <img class="center-block" src="data:image;base64,@System.Convert.ToBase64String(Model.CruiseImage)" style="height:400px;"/>
+        }
+        else
+        {
+            <img class="center-block" src="~/Content/assets/NOIMAGE.jpg" style="height:400px;" />
+        }
+    </div>
+
+
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Operator.OperatorName)

@@ -36,6 +36,7 @@
                 <li><a class="black-text" href="/CabinTypes">Cabin Types Management</a></li>
                 <li><a class="black-text" href="/Destinations">Destinations Management</a></li>
                 <li><a class="black-text" href="/Operators">Operators Management</a></li>
+                <li><a class="black-text" href="/Cabins">Cabins Management</a></li>
             </ul>
             <a id="logo-container" href="/" class="brand-logo" style="color:black;">Carnival Corp.</a>
             <ul class="right hide-on-med-and-down">
@@ -83,6 +84,9 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $(".button-collapse").sideNav();
+            try{
+                $('select').material_select();
+            } catch (exc) { }
             try {                
                 $('.parallax').parallax();
             }catch(exc){}
