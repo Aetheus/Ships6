@@ -16,6 +16,7 @@ namespace Ships6.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Cruises
+        [Authorize(Roles = "canEdit")]
         public ActionResult Index()
         {
             var cruises = db.Cruises.Include(c => c.Operator);
@@ -23,6 +24,7 @@ namespace Ships6.Controllers
         }
 
         // GET: Cruises/Details/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +40,7 @@ namespace Ships6.Controllers
         }
 
         // GET: Cruises/Create
+        [Authorize(Roles = "canEdit")]
         public ActionResult Create()
         {
             ViewBag.OperatorID = new SelectList(db.Operators, "OperatorID", "OperatorName");
@@ -51,6 +54,7 @@ namespace Ships6.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "canEdit")]
         public ActionResult Create([Bind(Include = "CruiseID,OperatorID,CruiseName,CruiseDescription,CruiseImage,CruisePrice,CruiseDepartureTime,CruiseDayLength")] Cruise cruise,
                                     FormCollection collection)
         {
@@ -89,6 +93,7 @@ namespace Ships6.Controllers
         }
 
         // GET: Cruises/Edit/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -109,10 +114,17 @@ namespace Ships6.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CruiseID,OperatorID,CruiseName,CruiseDescription,CruiseImage,CruisePrice,CruiseDepartureTime,CruiseDayLength")] Cruise cruise)
+        [Authorize(Roles = "canEdit")]
+        public ActionResult Edit([Bind(Include = "CruiseID,OperatorID,CruiseName,CruiseDescription,CruiseImage,CruisePrice,CruiseDepartureTime,CruiseDayLength")] Cruise cruise, HttpPostedFileBase imageFile = null)
         {
             if (ModelState.IsValid)
             {
+                if (imageFile != null && imageFile.ContentLength > 0)
+                {
+                    cruise.CruiseImage = new byte[imageFile.ContentLength];
+                    imageFile.InputStream.Read(cruise.CruiseImage, 0, imageFile.ContentLength);
+                }
+
                 db.Entry(cruise).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -122,6 +134,7 @@ namespace Ships6.Controllers
         }
 
         // GET: Cruises/Delete/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -139,6 +152,7 @@ namespace Ships6.Controllers
         // POST: Cruises/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "canEdit")]
         public ActionResult DeleteConfirmed(int id)
         {
             Cruise cruise = db.Cruises.Find(id);
@@ -147,6 +161,7 @@ namespace Ships6.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "canEdit")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

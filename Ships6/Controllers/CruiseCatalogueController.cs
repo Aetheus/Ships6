@@ -38,7 +38,6 @@ namespace Ships6.Controllers
             return View(cruise);
         }
 
-   
 
         protected override void Dispose(bool disposing)
         {

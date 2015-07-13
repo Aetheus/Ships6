@@ -39,7 +39,14 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CruiseImage)
+            @if (Model.CruiseImage != null)
+            {
+                <img src="data:image;base64,@System.Convert.ToBase64String(Model.CruiseImage)" />
+            }
+            else
+            {
+                <img src="~/Content/assets/NOIMAGE.jpg" />
+            }
         </dd>
 
         <dt>
@@ -69,6 +76,5 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CruiseID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -36,10 +36,13 @@ namespace Ships6.Controllers
         [AllowAnonymous]
         public ActionResult Remove(int id)
         {
-            if(Session["CompareList"] != null){
-                List<int> compareList = (List<int>)Session["CompareList"];
+            Session["CompareList"] = (Session["CompareList"] != null) ? Session["CompareList"] : new List<int>();
+            List<int> compareList = (List<int>)Session["CompareList"];
+
+            if(compareList != null){
                 if (compareList.IndexOf(id) >= 0){
                     compareList.Remove(id);
+                    Session["CompareList"] = compareList;
                     return Content("Cruise removed from compare list");
                 }
                 else{

@@ -1,0 +1,42 @@
+﻿@model Ships6.Models.Cabin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cabin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CabinType.CabinTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CabinType.CabinTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cruise.CruiseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cruise.CruiseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CabinIsOccupied)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CabinIsOccupied)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CabinID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

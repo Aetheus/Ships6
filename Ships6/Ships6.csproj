@@ -185,6 +185,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CabinsController.cs" />
     <Compile Include="Controllers\CabinTypesController.cs" />
     <Compile Include="Controllers\CMController.cs" />
     <Compile Include="Controllers\CruiseCatalogueController.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OperatorsController.cs" />
+    <Compile Include="Controllers\ReservationMakerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -344,9 +346,15 @@
     <Content Include="Views\CruiseCatalogue\Index.cshtml" />
     <Content Include="Views\Shared\_Parallax1.cshtml" />
     <Content Include="Views\CruiseCompare\View.cshtml" />
+    <Content Include="Views\Cabins\Create.cshtml" />
+    <Content Include="Views\Cabins\Delete.cshtml" />
+    <Content Include="Views\Cabins\Details.cshtml" />
+    <Content Include="Views\Cabins\Edit.cshtml" />
+    <Content Include="Views\Cabins\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ReservationMaker\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

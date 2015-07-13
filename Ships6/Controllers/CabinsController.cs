@@ -10,131 +10,120 @@ using Ships6.Models;
 
 namespace Ships6.Controllers
 {
-    public class DestinationsController : Controller
+    public class CabinsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Destinations
-        [Authorize(Roles = "canEdit")]
+        // GET: Cabins
         public ActionResult Index()
         {
-            return View(db.Destinations.ToList());
+            var cabins = db.Cabins.Include(c => c.CabinType).Include(c => c.Cruise);
+            return View(cabins.ToList());
         }
 
-        // GET: Destinations/Details/5
-        [Authorize(Roles = "canEdit")]
+        // GET: Cabins/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Destination destination = db.Destinations.Find(id);
-            if (destination == null)
+            Cabin cabin = db.Cabins.Find(id);
+            if (cabin == null)
             {
                 return HttpNotFound();
             }
-            return View(destination);
+            return View(cabin);
         }
 
-        // GET: Destinations/Create
-        [Authorize(Roles = "canEdit")]
+        // GET: Cabins/Create
         public ActionResult Create()
         {
+            ViewBag.CabinTypeID = new SelectList(db.CabinTypes, "CabinTypeID", "CabinTypeName");
+            ViewBag.CruiseID = new SelectList(db.Cruises, "CruiseID", "CruiseName");
             return View();
         }
 
-        // POST: Destinations/Create
+        // POST: Cabins/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "canEdit")]
-        public ActionResult Create([Bind(Include = "DestinationID,DestinationName,DestinationCountry,DestinationImage")] Destination destination, HttpPostedFileBase imageFile = null)
+        public ActionResult Create([Bind(Include = "CabinID,CruiseID,CabinTypeID,CabinIsOccupied")] Cabin cabin)
         {
             if (ModelState.IsValid)
             {
-                if (imageFile != null && imageFile.ContentLength > 0)
-                {
-                    destination.DestinationImage = new byte[imageFile.ContentLength];
-                    imageFile.InputStream.Read(destination.DestinationImage, 0, imageFile.ContentLength);
-                }
-
-                db.Destinations.Add(destination);
+                db.Cabins.Add(cabin);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(destination);
+            ViewBag.CabinTypeID = new SelectList(db.CabinTypes, "CabinTypeID", "CabinTypeName", cabin.CabinTypeID);
+            ViewBag.CruiseID = new SelectList(db.Cruises, "CruiseID", "CruiseName", cabin.CruiseID);
+            return View(cabin);
         }
 
-        // GET: Destinations/Edit/5
+        // GET: Cabins/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Destination destination = db.Destinations.Find(id);
-            if (destination == null)
+            Cabin cabin = db.Cabins.Find(id);
+            if (cabin == null)
             {
                 return HttpNotFound();
             }
-            return View(destination);
+            ViewBag.CabinTypeID = new SelectList(db.CabinTypes, "CabinTypeID", "CabinTypeName", cabin.CabinTypeID);
+            ViewBag.CruiseID = new SelectList(db.Cruises, "CruiseID", "CruiseName", cabin.CruiseID);
+            return View(cabin);
         }
 
-        // POST: Destinations/Edit/5
+        // POST: Cabins/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "canEdit")]
-        public ActionResult Edit([Bind(Include = "DestinationID,DestinationName,DestinationCountry")] Destination destination, HttpPostedFileBase imageFile = null)
+        public ActionResult Edit([Bind(Include = "CabinID,CruiseID,CabinTypeID,CabinIsOccupied")] Cabin cabin)
         {
             if (ModelState.IsValid)
             {
-                if (imageFile != null && imageFile.ContentLength > 0)
-                {
-                    destination.DestinationImage = new byte[imageFile.ContentLength];
-                    imageFile.InputStream.Read(destination.DestinationImage, 0, imageFile.ContentLength);
-                }
-
-                db.Entry(destination).State = EntityState.Modified;
+                db.Entry(cabin).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(destination);
+            ViewBag.CabinTypeID = new SelectList(db.CabinTypes, "CabinTypeID", "CabinTypeName", cabin.CabinTypeID);
+            ViewBag.CruiseID = new SelectList(db.Cruises, "CruiseID", "CruiseName", cabin.CruiseID);
+            return View(cabin);
         }
 
-        // GET: Destinations/Delete/5
-        [Authorize(Roles = "canEdit")]
+        // GET: Cabins/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Destination destination = db.Destinations.Find(id);
-            if (destination == null)
+            Cabin cabin = db.Cabins.Find(id);
+            if (cabin == null)
             {
                 return HttpNotFound();
             }
-            return View(destination);
+            return View(cabin);
         }
 
-        // POST: Destinations/Delete/5
+        // POST: Cabins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "canEdit")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Destination destination = db.Destinations.Find(id);
-            db.Destinations.Remove(destination);
+            Cabin cabin = db.Cabins.Find(id);
+            db.Cabins.Remove(cabin);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        [Authorize(Roles = "canEdit")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

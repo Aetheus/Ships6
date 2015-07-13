@@ -31,9 +31,19 @@
 <body>
     <nav class="white" role="navigation">
         <div class="nav-wrapper container">
+            <ul id="dropdown1" class="dropdown-content">
+                <li><a class="black-text" href="/Cruises">Cruise Management</a></li>
+                <li><a class="black-text" href="/CabinTypes">Cabin Types Management</a></li>
+                <li><a class="black-text" href="/Destinations">Destinations Management</a></li>
+                <li><a class="black-text" href="/Operators">Operators Management</a></li>
+            </ul>
             <a id="logo-container" href="/" class="brand-logo" style="color:black;">Carnival Corp.</a>
             <ul class="right hide-on-med-and-down">
                 @Html.Partial("_LoginPartial")
+                @if (this.User.IsInRole("canEdit"))
+                {
+                    <li><a class="dropdown-button black-text" href="#!" data-hover="true" data-constrainwidth="false" data-beloworigin="true" data-activates="dropdown1">Administration</a></li>
+                }
                 <li>@Html.ActionLink("Catalogue", "Index", "CruiseCatalogue",null, new { @class = "black-text" })</li>
                 <li>@Html.ActionLink("Home", "Index", "Home",null, new { @class = "black-text" })</li>
                 <li>@Html.ActionLink("About", "About", "Home",null, new { @class = "black-text" })</li>
@@ -73,11 +83,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $(".button-collapse").sideNav();
-            try{
+            try {                
                 $('.parallax').parallax();
-            }catch(exc){
-
-            }
+            }catch(exc){}
+            try{
+                $(".dropdown-button").dropdown();
+            }catch(exc){}
         });
     </script>
 </body>

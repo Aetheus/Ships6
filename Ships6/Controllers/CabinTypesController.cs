@@ -15,12 +15,14 @@ namespace Ships6.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: CabinTypes
+        [Authorize(Roles = "canEdit")]
         public ActionResult Index()
         {
             return View(db.CabinTypes.ToList());
         }
 
         // GET: CabinTypes/Details/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace Ships6.Controllers
         }
 
         // GET: CabinTypes/Create
+        [Authorize(Roles = "canEdit")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace Ships6.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "canEdit")]
         public ActionResult Create([Bind(Include = "CabinTypeID,CabinTypeName,CabinTypePrice")] CabinType cabinType)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace Ships6.Controllers
         }
 
         // GET: CabinTypes/Edit/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace Ships6.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "canEdit")]
         public ActionResult Edit([Bind(Include = "CabinTypeID,CabinTypeName,CabinTypePrice")] CabinType cabinType)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace Ships6.Controllers
         }
 
         // GET: CabinTypes/Delete/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace Ships6.Controllers
         // POST: CabinTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "canEdit")]
         public ActionResult DeleteConfirmed(int id)
         {
             CabinType cabinType = db.CabinTypes.Find(id);
@@ -115,6 +123,7 @@ namespace Ships6.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "canEdit")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

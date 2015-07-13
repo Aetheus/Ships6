@@ -15,12 +15,14 @@ namespace Ships6.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Operators
+        [Authorize(Roles = "canEdit")]
         public ActionResult Index()
         {
             return View(db.Operators.ToList());
         }
 
         // GET: Operators/Details/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace Ships6.Controllers
         }
 
         // GET: Operators/Create
+        [Authorize(Roles = "canEdit")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +49,7 @@ namespace Ships6.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "canEdit")]
         public ActionResult Create([Bind(Include = "OperatorID,OperatorName")] Operator @operator)
         {
             if (ModelState.IsValid)
@@ -59,6 +63,7 @@ namespace Ships6.Controllers
         }
 
         // GET: Operators/Edit/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +83,7 @@ namespace Ships6.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "canEdit")]
         public ActionResult Edit([Bind(Include = "OperatorID,OperatorName")] Operator @operator)
         {
             if (ModelState.IsValid)
@@ -90,6 +96,7 @@ namespace Ships6.Controllers
         }
 
         // GET: Operators/Delete/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +114,7 @@ namespace Ships6.Controllers
         // POST: Operators/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "canEdit")]
         public ActionResult DeleteConfirmed(int id)
         {
             Operator @operator = db.Operators.Find(id);
@@ -115,6 +123,7 @@ namespace Ships6.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "canEdit")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

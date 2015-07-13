@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Ships6.Models.Cabin>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CabinType.CabinTypeName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cruise.CruiseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CabinIsOccupied)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CabinType.CabinTypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cruise.CruiseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CabinIsOccupied)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CabinID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CabinID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CabinID })
+        </td>
+    </tr>
+}
+
+</table>

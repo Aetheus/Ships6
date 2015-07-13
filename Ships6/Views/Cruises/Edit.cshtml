@@ -7,10 +7,11 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@{/*Html.BeginForm("Create", "Cruises", FormMethod.Post, new { enctype = "multipart/form-data" })*/}
+@using (Html.BeginForm("Edit", "Cruises", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+        
     <div class="form-horizontal">
         <h4>Cruise</h4>
         <hr />
@@ -42,14 +43,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CruiseImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CruiseImage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CruiseImage, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.CruisePrice, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CruisePrice, new { htmlAttributes = new { @class = "form-control" } })
@@ -70,6 +63,13 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CruiseDayLength, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CruiseDayLength, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="imageFile">Image</label>
+            <div class="col-md-10">
+                <input type="file" name="imageFile" class="form-control" />
             </div>
         </div>
 
