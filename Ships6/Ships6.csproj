@@ -208,6 +208,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cabin.cs" />
     <Compile Include="Models\CabinType.cs" />
+    <Compile Include="Models\CruiseCompareViewModel.cs" />
     <Compile Include="Models\_ApplicationDBContext.cs" />
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\Cruise.cs" />

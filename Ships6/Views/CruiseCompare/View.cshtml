@@ -1,44 +1,123 @@
-﻿
-@model IEnumerable<Ships6.Models.Cruise>
+﻿@using Ships6.Models;
+@model CruiseCompareViewModel
 
 
 @{
-    ViewBag.Title = "View";
-    var cruiseArray = Model.ToArray();
+    ViewBag.Title = "Cruise Comparison";
+    var cruiseArray = Model.cruiseList;
+    var destinationDictionary = Model.cruiseDestinationsDictionary;
+
+    int cheapestTripID = 0;
+    decimal? cheapestTripPrice = null;
+    
+    int longestTripID = 0;
+    int? longestTripDays= null;
+    
     if (ViewBag.isPartialView != null && (bool)ViewBag.isPartialView)
     {
         Layout = null;            
     }    
 }
 
-<h2>View</h2>
+<h2>Cruise Comparison</h2>
 
-<table>
-    <tr>
-        <td>Image</td>
-        @for (int i = 0; i < cruiseArray.Length; i++)
-        {
-            if (cruiseArray[i].CruiseImage != null)
+<table class="bordered hoverable responsive-table centered ">
+    <thead>
+        <tr>
+            <th></th>
+            @for (int i = 0; i < cruiseArray.Count; i++)
             {
-        <td>
-            <img src="data:image;base64,@System.Convert.ToBase64String(cruiseArray[i].CruiseImage)" height="200"/>
-        </td>
+                if (cruiseArray[i].CruiseImage != null)
+                {
+                    <th>
+                        <img src="data:image;base64,@System.Convert.ToBase64String(cruiseArray[i].CruiseImage)" height="200" />
+                    </th>
+                }
+                else
+                {
+                    <th>
+                        <img src="~/Content/assets/NOIMAGE.jpg" height="200" />
+                    </th>
+                }
             }
-            else
-            {
-        <td>
-            <img src="~/Content/assets/NOIMAGE.jpg" height="200" />
-        </td>
-            }
-        }
-    </tr>
+        </tr>
+    </thead>
 
-    <tr>
-        <td>Name</td>
-        @for (int i = 0; i < cruiseArray.Length; i++){
-        <td>
-            @cruiseArray[i].CruiseName
-        </td>
-        }
-    </tr>
+
+    <tbody>
+        <tr>
+            <td><h6>Name</h6></td>
+            @for (int i = 0; i < cruiseArray.Count; i++)
+            {
+                <td>
+                    @cruiseArray[i].CruiseName
+                </td>
+            }
+        </tr>
+
+
+        <tr>
+            <td><h6>Price</h6></td>
+            @for (int i = 0; i < cruiseArray.Count; i++)
+            {
+                <td>
+                    RM @cruiseArray[i].CruisePrice.ToString("N")
+                </td>
+                if (cheapestTripPrice == null || cruiseArray[i].CruisePrice < cheapestTripPrice) { 
+                    cheapestTripPrice = cruiseArray[i].CruisePrice; cheapestTripID = cruiseArray[i].CruiseID; 
+                } 
+            }
+        </tr>
+
+
+        <tr>
+            <td><h6>Cruise Length</h6></td>
+            @for (int i = 0; i < cruiseArray.Count; i++)
+            {
+                <td>
+                    @cruiseArray[i].CruiseDayLength days
+                </td>
+                if (longestTripDays == null || cruiseArray[i].CruiseDayLength > longestTripDays) {
+                    longestTripDays = cruiseArray[i].CruiseDayLength; longestTripID = cruiseArray[i].CruiseID; 
+                }
+            }
+        </tr>
+
+        <tr>
+            <td><h6>Departure Date</h6></td>
+            @for (int i = 0; i < cruiseArray.Count; i++)
+            {
+                <td>
+                    @cruiseArray[i].CruiseDepartureTime
+                </td>
+            }
+        </tr>
+
+
+        <tr>
+            <td><h6>Destinations</h6></td>
+            @for (int i = 0; i < cruiseArray.Count; i++)
+            {
+                <td>
+                    @foreach (Destination destination in destinationDictionary[cruiseArray[i].CruiseID])
+                    {
+                        <p>@destination.DestinationName, @destination.DestinationCountry</p>
+                    }
+                </td>
+            }
+        </tr>
+
+
+        <tr>
+            <td><h6>Cruise Operator</h6></td>
+            @for (int i = 0; i < cruiseArray.Count; i++)
+            {
+                <td>
+                    @cruiseArray[i].Operator.OperatorName
+                </td>
+            }
+        </tr>
+    </tbody>
 </table>
+<a id="clearCompareButton" href="#" class="btn-flat red-text">Clear Comparison</a>
+

@@ -1,6 +1,7 @@
 ﻿using Ships6.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -60,17 +61,37 @@ namespace Ships6.Controllers
         {
             ViewBag.isPartialView = isPartial;
             List<Cruise> cruiseList = new List<Cruise>();
+            Dictionary<int, List<Destination>> cruiseDestinationsDictionary = new Dictionary<int, List<Destination>>();
+
+
+            
 
             if (Session["CompareList"] != null)
             {
                 foreach (int id in (List<int>)Session["CompareList"])
                 {
                     cruiseList.Add(db.Cruises.Find(id));
+
+                    /*
+                     * var destinationsList = from cd in db.CruiseDestinations
+                                           join ds in db.Destinations on cd.DestinationID equals ds.DestinationID
+                                           where cd.CruiseID == id
+                                           select ds;
+                     */
+
+                    var destinationsList = from cd in db.CruiseDestinations
+                                       where cd.CruiseID == id && cd.Destination.DestinationName != "no destination"
+                                       select cd.Destination;
+
+                    Debug.WriteLine("destinations List length for cruiseID"+id+":" +destinationsList.Count());
+                    cruiseDestinationsDictionary.Add(id, destinationsList.ToList<Destination>());
                 }
             }
 
 
-            return View(cruiseList.ToArray());
+            CruiseCompareViewModel viewModel = new CruiseCompareViewModel(cruiseList, cruiseDestinationsDictionary);
+
+            return View(viewModel);
         }
     }
 }

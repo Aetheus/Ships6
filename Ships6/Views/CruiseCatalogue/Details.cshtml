@@ -1,7 +1,10 @@
-﻿@model Ships6.Models.Cruise
+﻿@using Ships6.Models
+@model Ships6.Models.Cruise
 
 @{
     ViewBag.Title = "Details";
+
+    List<Destination> destinationList = (List<Destination>) ViewBag.destinationList;
 }
 
 
@@ -21,51 +24,103 @@
     </div>
 
 
+    <table class="bordered hoverable">
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CruiseName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CruiseName)
+            </td>
+        </tr>
 
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Operator.OperatorName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Operator.OperatorName)
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CruiseDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CruiseDescription)
+            </td>
+        </tr>
+    
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CruisePrice)
+            </td>
+            <td>
+                RM @Model.CruisePrice.ToString("N")
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.CruiseDepartureTime)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CruiseDepartureTime)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Cruise Length
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.CruiseDayLength) days
+            </td>
+
+        </tr>
+
+        <tr>
+            <td>Destinations</td>
+            <td>
+                @foreach (Destination ds in destinationList)
+                {
+                    <p>@ds.DestinationName, @ds.DestinationCountry</p>
+                }
+            </td>
+        </tr>
+    </tbody>
+    </table>
+
+    <!--
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CruiseName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CruiseName)
+        </dd>
+
+
         <dt>
             @Html.DisplayNameFor(model => model.Operator.OperatorName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Operator.OperatorName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CruiseName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CruiseName)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.CruiseDescription)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.CruiseDescription)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CruiseImage)
-        </dt>
-
-        <dd>
-            @if (Model.CruiseImage != null)
-            {
-                <img src="data:image;base64,@System.Convert.ToBase64String(Model.CruiseImage)" />
-            }
-            else
-            {
-                <img src="~/Content/assets/NOIMAGE.jpg" />
-            }
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.CruisePrice)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.CruisePrice)
         </dd>
@@ -73,7 +128,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.CruiseDepartureTime)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.CruiseDepartureTime)
         </dd>
@@ -81,12 +135,12 @@
         <dt>
             @Html.DisplayNameFor(model => model.CruiseDayLength)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.CruiseDayLength)
         </dd>
 
     </dl>
+        -->
 </div>
 <p>
     @Html.ActionLink("Back to List", "Index")
