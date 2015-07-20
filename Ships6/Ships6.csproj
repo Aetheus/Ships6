@@ -352,10 +352,10 @@
     <Content Include="Views\Cabins\Details.cshtml" />
     <Content Include="Views\Cabins\Edit.cshtml" />
     <Content Include="Views\Cabins\Index.cshtml" />
+    <Content Include="Views\ReservationMaker\Make.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\ReservationMaker\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

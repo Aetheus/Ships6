@@ -1,0 +1,21 @@
+﻿@using Ships6.Models
+@{
+    ViewBag.Title = "Make";    
+    var cabinChoices = ViewBag.CabinChoices;
+    Cruise cruise = ViewBag.cruise;
+}
+
+<h2>Make Reservation</h2>
+
+
+<h4>@cruise.CruiseName</h4>
+
+
+<h4>Cabin Choices</h4>
+@foreach (var cabins in cabinChoices)
+{
+      
+    <p> @cabins.CabinID @cabins.CabinType.CabinTypeName </p>
+    
+}
+    
