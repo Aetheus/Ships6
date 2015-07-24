@@ -1,0 +1,48 @@
+﻿@using Ships6.Models
+@{
+    
+    ViewBag.Title = "History";
+    Reservation[] reservations = ViewBag.reservations; 
+    
+}
+
+<h2>History</h2>
+@if (reservations.Length == 0)
+{
+    <p>No reservations found!</p>
+}
+
+@foreach (Reservation res in reservations)
+{
+<div class="reservationWrapper" style="border:2px solid black;">
+    <table class="bordered">
+        <tbody>
+            <tr>
+                <td style="width:1px">Reservation ID</td>
+                <td>: #@res.ReservationID</td>
+            </tr>
+
+            <tr>
+                <td style="width:1px">Cruise</td>
+                <td>: @res.Cruise.CruiseName</td>
+            </tr>
+
+            <tr>
+                <td style="width:1px">Cabin Type</td>
+                <td>: @res.Cabin.CabinType.CabinTypeName</td>
+            </tr>
+
+            <tr>
+                <td style="width:1px">Price</td>
+                <td>: RM @res.ReservationPrice.ToString("N")</td>
+            </tr>
+
+            <tr>
+                <td style="width:10px">Reservation made at</td>
+                <td>: @res.ReservationTime</td>
+            </tr>
+    </tbody>
+    </table>
+
+</div>
+}

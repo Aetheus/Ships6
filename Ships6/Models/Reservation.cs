@@ -12,9 +12,9 @@ namespace Ships6.Models
         [Key]
         public int ReservationID { get; set; }
 
-        public int CruiseID { get; set; }
-        public int UserID { get; set; }
-        public int CabinID { get; set; }
+        public int? CruiseID { get; set; }
+        public string UserID { get; set; }
+        public int? CabinID { get; set; }
 
         [Display (Name="Booked On")]
         [Column(TypeName="datetime2")]
@@ -26,12 +26,12 @@ namespace Ships6.Models
 
 
         [ForeignKey("CruiseID")]
-        public Cruise Cruise;
+        public virtual Cruise Cruise{get;set;}
 
         [ForeignKey("UserID")]
-        public ApplicationUser ApplicationUser;
-
+        public virtual ApplicationUser ApplicationUser { get; set; }
+        
         [ForeignKey("CabinID")]
-        public Cabin Cabin;
+        public virtual Cabin Cabin { get; set; }
     }
 }

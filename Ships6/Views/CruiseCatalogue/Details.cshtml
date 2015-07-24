@@ -2,7 +2,7 @@
 @model Ships6.Models.Cruise
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.CruiseName + " Details";
 
     List<Destination> destinationList = (List<Destination>) ViewBag.destinationList;
 }
@@ -144,4 +144,9 @@
 </div>
 <p>
     @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Make Booking", "Make", "ReservationMaker", new { id = Model.CruiseID }, new { @class = "btn right" })
+    <br />
+    <br />
+    <br />
+    <br />
 </p>

@@ -7,11 +7,20 @@
     var cruiseArray = Model.cruiseList;
     var destinationDictionary = Model.cruiseDestinationsDictionary;
 
+    
+    //vars used to track the "best" cruises according to price, length, etc 
     int cheapestTripID = 0;
     decimal? cheapestTripPrice = null;
     
     int longestTripID = 0;
     int? longestTripDays= null;
+
+    int mostDestinationsID = 0;
+    int? mostDestinations = null;
+
+    int earliestID = 0;
+    DateTime? earliest = null;
+    //end of tracking vars
     
     if (ViewBag.isPartialView != null && (bool)ViewBag.isPartialView)
     {
@@ -30,13 +39,17 @@
                 if (cruiseArray[i].CruiseImage != null)
                 {
                     <th>
-                        <img src="data:image;base64,@System.Convert.ToBase64String(cruiseArray[i].CruiseImage)" height="200" />
+                        <a href="/CruiseCatalogue/Details/@cruiseArray[i].CruiseID">
+                            <img src="data:image;base64,@System.Convert.ToBase64String(cruiseArray[i].CruiseImage)" height="200" />
+                        </a>
                     </th>
                 }
                 else
                 {
                     <th>
-                        <img src="~/Content/assets/NOIMAGE.jpg" height="200" />
+                        <a href="/CruiseCatalogue/Details/@cruiseArray[i].CruiseID">
+                            <img src="~/Content/assets/NOIMAGE.jpg" height="200" />
+                        </a>
                     </th>
                 }
             }
@@ -60,12 +73,15 @@
             <td><h6>Price</h6></td>
             @for (int i = 0; i < cruiseArray.Count; i++)
             {
-                <td>
+                <td id="price-@cruiseArray[i].CruiseID">
                     RM @cruiseArray[i].CruisePrice.ToString("N")
                 </td>
-                if (cheapestTripPrice == null || cruiseArray[i].CruisePrice < cheapestTripPrice) { 
-                    cheapestTripPrice = cruiseArray[i].CruisePrice; cheapestTripID = cruiseArray[i].CruiseID; 
-                } 
+                
+                if (cheapestTripPrice == null || cruiseArray[i].CruisePrice < cheapestTripPrice)
+                {
+                    cheapestTripPrice = cruiseArray[i].CruisePrice;
+                    cheapestTripID = cruiseArray[i].CruiseID;
+                }
             }
         </tr>
 
@@ -74,11 +90,13 @@
             <td><h6>Cruise Length</h6></td>
             @for (int i = 0; i < cruiseArray.Count; i++)
             {
-                <td>
+                <td id="days-@cruiseArray[i].CruiseID">
                     @cruiseArray[i].CruiseDayLength days
                 </td>
-                if (longestTripDays == null || cruiseArray[i].CruiseDayLength > longestTripDays) {
-                    longestTripDays = cruiseArray[i].CruiseDayLength; longestTripID = cruiseArray[i].CruiseID; 
+                
+                if (longestTripDays == null || cruiseArray[i].CruiseDayLength > longestTripDays)
+                {
+                    longestTripDays = cruiseArray[i].CruiseDayLength; longestTripID = cruiseArray[i].CruiseID;
                 }
             }
         </tr>
@@ -87,9 +105,15 @@
             <td><h6>Departure Date</h6></td>
             @for (int i = 0; i < cruiseArray.Count; i++)
             {
-                <td>
+                <td id="depart-@cruiseArray[i].CruiseID">
                     @cruiseArray[i].CruiseDepartureTime
                 </td>
+
+                if (earliest == null || cruiseArray[i].CruiseDepartureTime < earliest)
+                {
+                    earliest = cruiseArray[i].CruiseDepartureTime;
+                    earliestID = cruiseArray[i].CruiseID;
+                }
             }
         </tr>
 
@@ -98,10 +122,16 @@
             <td><h6>Destinations</h6></td>
             @for (int i = 0; i < cruiseArray.Count; i++)
             {
-                <td>
+                <td id="destinations-@cruiseArray[i].CruiseID">
                     @foreach (Destination destination in destinationDictionary[cruiseArray[i].CruiseID])
                     {
                         <p>@destination.DestinationName, @destination.DestinationCountry</p>
+                    }
+
+                    @if (mostDestinations == null || destinationDictionary[cruiseArray[i].CruiseID].Count > mostDestinations)
+                    {
+                        mostDestinations = destinationDictionary[cruiseArray[i].CruiseID].Count; 
+                        mostDestinationsID = cruiseArray[i].CruiseID;
                     }
                 </td>
             }
@@ -117,7 +147,34 @@
                 </td>
             }
         </tr>
+
+        <tr>
+            <td><h6>Booking</h6></td>
+            @for (int i = 0; i < cruiseArray.Count; i++)
+            {
+                <td>
+                    <a href="/ReservationMaker/Make/@cruiseArray[i].CruiseID" class="btn">Book Now</a>
+                </td>
+            }
+        </tr>
     </tbody>
 </table>
-<a id="clearCompareButton" href="#" class="btn-flat red-text">Clear Comparison</a>
+<a id="clearCompareButton" href="Clear" class="btn-flat red-text">Clear Comparison</a>
 
+<script type="text/javascript">
+
+    window.onload = function () {
+        var cheapest = document.getElementById("price-@cheapestTripID");
+        var longest = document.getElementById("days-@longestTripID");
+        var destinationest = document.getElementById("destinations-@mostDestinationsID");
+        var earliest = document.getElementById("depart-@mostDestinationsID");
+
+        $(cheapest).prepend('<span class="blue-text">[Most Affordable!]</span><br/>');
+        $(longest).prepend('<span class="blue-text">[Longest Trip!]</span><br/>');
+        $(destinationest).prepend('<span class="blue-text">[Most Destinations!]</span><br/>');
+        $(earliest).prepend('<span class="blue-text">[Earliest!]</span><br/>');
+        //cheapest.appendChild('<span class="badge red-text">Most Affordable!</span>');
+
+
+    }
+</script>

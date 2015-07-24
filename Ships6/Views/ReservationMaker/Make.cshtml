@@ -3,19 +3,49 @@
     ViewBag.Title = "Make";    
     var cabinChoices = ViewBag.CabinChoices;
     Cruise cruise = ViewBag.cruise;
+    string errorMsg = ViewBag.errorMsg != null ? ViewBag.errorMsg : ""; 
 }
 
-<h2>Make Reservation</h2>
 
+<h2>@cruise.CruiseName Reservation</h2>
 
-<h4>@cruise.CruiseName</h4>
-
-
-<h4>Cabin Choices</h4>
-@foreach (var cabins in cabinChoices)
+@using (Html.BeginForm("Make", "ReservationMaker", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-      
-    <p> @cabins.CabinID @cabins.CabinType.CabinTypeName </p>
-    
-}
-    
+
+<input type="hidden" value="@cruise.CruiseID" id="cruiseid" name="cruiseid" />    
+  
+<p class="red-text">@errorMsg</p>  
+<h4>Details</h4>
+<table>
+    <tr>
+        <td>Cruise Name</td>
+        <td>@cruise.CruiseName</td>
+    </tr>
+    <tr>
+        <td>Cruise Price</td>
+        <td>@cruise.CruisePrice.ToString("N")</td>
+    </tr>
+    <tr>
+        <td>Cruise Departure Date</td>
+        <td>@cruise.CruiseDepartureTime</td>
+    </tr>
+    <tr>
+        <td>Cruise Duration (days)</td>
+        <td>@cruise.CruiseDayLength</td>
+    </tr>
+</table>
+<hr />
+
+
+<h4>Cabin Choice</h4>
+    <select id="cabintypechoice" name="cabintypechoice" >
+    @foreach (Cabin cabins in cabinChoices)
+    {
+        <option value="@cabins.CabinType.CabinTypeID"> @cabins.CabinType.CabinTypeName </option>
+    }
+    </select>
+<br />
+
+<div class="right"><button type="submit" class="btn waves-effect waves-teal">Submit Reservation</button></div>
+<br /><br /><br />
+}  <!--end of form-->

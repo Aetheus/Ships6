@@ -200,9 +200,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelpers\ImageHelper.cs" />
-    <Compile Include="Migrations\201507081608212_Initial.cs" />
-    <Compile Include="Migrations\201507081608212_Initial.Designer.cs">
-      <DependentUpon>201507081608212_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201507242135196_initial.cs" />
+    <Compile Include="Migrations\201507242135196_initial.Designer.cs">
+      <DependentUpon>201507242135196_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -353,6 +353,7 @@
     <Content Include="Views\Cabins\Edit.cshtml" />
     <Content Include="Views\Cabins\Index.cshtml" />
     <Content Include="Views\ReservationMaker\Make.cshtml" />
+    <Content Include="Views\ReservationMaker\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -365,8 +366,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201507081608212_Initial.resx">
-      <DependentUpon>201507081608212_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201507242135196_initial.resx">
+      <DependentUpon>201507242135196_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

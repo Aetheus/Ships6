@@ -22,6 +22,7 @@ namespace Ships6.Controllers
         [AllowAnonymous]
         public ActionResult Add(int id)
         {
+            Debug.WriteLine("Got here. the id was: " + id);
             Session["CompareList"] = (Session["CompareList"] != null) ? Session["CompareList"] : new List<int>();
             List<int> compareList = (List<int>)Session["CompareList"];
 
@@ -56,6 +57,13 @@ namespace Ships6.Controllers
 
         }
     
+        [AllowAnonymous]
+        public ActionResult Clear()
+        {
+            Session["CompareList"] = null;
+            return RedirectToAction("Index", "CruiseCatalogue");
+        }
+
         [AllowAnonymous]
         public ActionResult View(bool isPartial = false)
         {

@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ships6.Models;
-using System.Linq;
 using System.Diagnostics;
 
 namespace Ships6.Controllers

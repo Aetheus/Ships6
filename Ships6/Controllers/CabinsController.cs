@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Ships6.Models;
+using System.Diagnostics;
 
 namespace Ships6.Controllers
 {
@@ -123,6 +124,41 @@ namespace Ships6.Controllers
             db.Cabins.Remove(cabin);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult customSeed()
+        {
+            var CabinTypess = (from cbtype in db.CabinTypes
+                              select cbtype).ToArray();
+
+            var Cruises = (from crs in db.Cruises
+                           select crs);
+
+            int numRoomsEach = 10;
+
+            Debug.WriteLine("CabinTypes in total: " + CabinTypess.Count());
+
+            foreach (Cruise cr in Cruises)
+            {
+                for (int h = 0; h < CabinTypess.Count(); h++)
+                {
+                    for (int i = 0; i < numRoomsEach; i++)
+                    {
+                        db.Cabins.Add(new Cabin
+                        {
+                            Cruise = cr,
+                            CabinType = CabinTypess[h],
+                            CabinIsOccupied = false
+                        });
+                    }
+                }
+                   
+            }
+
+            db.SaveChanges();
+
+            return Content("Seeded");
         }
 
         protected override void Dispose(bool disposing)

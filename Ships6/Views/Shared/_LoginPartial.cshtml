@@ -7,10 +7,12 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "black-text" })
+            @Html.ActionLink("User Panel", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "black-text" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()" class="black-text">Log off</a></li>
+        <li>@Html.ActionLink("Booking History", "History", "ReservationMaker", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "black-text" })</li>
     </ul>
+
     }
 }
 else
