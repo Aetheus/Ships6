@@ -96,6 +96,9 @@ namespace Ships6.Controllers
         [Authorize(Roles = "canEdit")]
         public ActionResult Edit(int? id)
         {
+            ViewBag.DestinationsList = new SelectList(db.Destinations, "DestinationID", "DestinationName");
+            ViewBag.DestinationNum = 6;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -106,6 +109,8 @@ namespace Ships6.Controllers
                 return HttpNotFound();
             }
             ViewBag.OperatorID = new SelectList(db.Operators, "OperatorID", "OperatorName", cruise.OperatorID);
+
+
             return View(cruise);
         }
 
@@ -115,7 +120,8 @@ namespace Ships6.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "canEdit")]
-        public ActionResult Edit([Bind(Include = "CruiseID,OperatorID,CruiseName,CruiseDescription,CruiseImage,CruisePrice,CruiseDepartureTime,CruiseDayLength")] Cruise cruise, HttpPostedFileBase imageFile = null)
+        public ActionResult Edit([Bind(Include = "CruiseID,OperatorID,CruiseName,CruiseDescription,CruiseImage,CruisePrice,CruiseDepartureTime,CruiseDayLength")] Cruise cruise, 
+            FormCollection collection, HttpPostedFileBase imageFile = null)
         {
             if (ModelState.IsValid)
             {
@@ -129,6 +135,28 @@ namespace Ships6.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            int cruiseID = cruise.CruiseID;
+            var destinations = collection.AllKeys
+                                .Where(k => k.StartsWith("destinationChoice"))
+                                .ToDictionary(k => k, k => collection[k]);
+            int counter = 1;
+            foreach (KeyValuePair<string, string> pair in destinations)
+            {
+                Debug.WriteLine("Key is: " + pair.Key + " While Value is " + pair.Value);
+                db.CruiseDestinations.Add(
+                    new CruiseDestination
+                    {
+                        CruiseID = cruiseID,
+                        DestinationID = int.Parse(pair.Value),
+                        tripOrder = counter
+                    }
+                );
+                counter++;
+            }
+            db.SaveChanges();
+
+
             ViewBag.OperatorID = new SelectList(db.Operators, "OperatorID", "OperatorName", cruise.OperatorID);
             return View(cruise);
         }
